@@ -79,3 +79,19 @@ function displayWeather(data){
 
     displayDiv.appendChild(list);
 }
+
+const displayAlerts = displayWeather;
+
+function displayError(errorObj){
+    const errorDiv = document.getElementById('error-message');
+    const displayDiv = document.getElementById('alerts-display');
+
+    if (displayDiv){
+        displayDiv.innerHTML = '';
+    }
+
+    if (errorDiv){
+        errorDiv.textContent = errorObj.message || 'network failure'
+        errorDiv.classList.remove('hidden')
+    }
+}
