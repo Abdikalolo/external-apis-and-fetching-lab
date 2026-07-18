@@ -54,3 +54,28 @@ function fetchWeatherData(state){
 }
 
 const fetchWeatherAlerts = fetchWeatherData;
+
+function displayWeather(data){
+    const displayDiv = document.getElementById('alerts-display')
+    if (!displayDiv) return;
+
+    displayDiv.innerHTML = '';
+
+    const title = data.title || 'Weather Alerts'
+    const totalAlerts = data.features ? data.features.lenght : 0;
+
+    const heading = document.createElement('h2');
+    heading.textContent = `&{title}: &{totalAlerts}`;
+    displayDiv.appendChild(heading);
+
+    if (totalAlerts === 0) return;
+
+    const list = document.createElement('ul')
+    data.features.forEach(feature => {
+        const item = document.createElement('li');
+        item.textContent = feature.propoerties ? feature.propoerties.headline : 'No headline available';
+        list.appendChild(item)
+    });
+
+    displayDiv.appendChild(list);
+}
